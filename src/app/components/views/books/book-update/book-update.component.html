@@ -1,0 +1,27 @@
+<form>
+    <h1>Update Book</h1>
+
+    <mat-form-field class="form">
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="book.title" [formControl]="title" required type="text" name="title" placeholder="E.g. The C Programming Language" maxlength="50">
+        <mat-error *ngIf="title.invalid">{{ getMessage() }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Author Name</mat-label>
+        <input matInput [(ngModel)]="book.author"  [formControl]="author" required type="text" name="author" placeholder="E.g. Brian Kernighan" maxlength="50">
+        <mat-error *ngIf="author.invalid">{{ getMessage() }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="book.description" [formControl]="description" required type="text" name="description" placeholder="E.g. The authors present the complete guide to ANSI standard C language programming. Written by the developers of C, this new version helps readers keep up with the finalized ANSI standard for C while showing how to take advantage of C's rich set of operators, economy of expression, improved control flow, and data structures." maxlength="1000"></textarea>
+        <mat-error *ngIf="description.invalid">{{ getMessage() }}</mat-error>
+    </mat-form-field>
+
+    <div class="buttons">
+        <button (click)="update()" [disabled]="getMessage()" class="mat-elevation-z8" mat-raised-button color="primary"> Update </button>
+        <button (click)="cancel()" class="mat-elevation-z8" mat-stroked-button color="primary"> Cancel </button>
+    </div>
+
+</form>

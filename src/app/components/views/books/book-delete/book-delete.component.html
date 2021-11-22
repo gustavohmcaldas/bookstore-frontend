@@ -1,0 +1,23 @@
+<form>
+    <h1>Delete Book</h1>
+
+    <mat-form-field class="form">
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="book.title" type="text" name="title" disabled>
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Author Name</mat-label>
+        <input matInput [(ngModel)]="book.author" type="text" name="author" disabled>
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="book.description" type="text" name="description" disabled></textarea>
+    </mat-form-field>
+
+    <div class="buttons">
+        <button (click)="delete()" class="mat-elevation-z8" mat-raised-button color="primary"> Delete </button>
+        <button (click)="cancel()" class="mat-elevation-z8" mat-stroked-button color="primary"> Cancel </button>
+    </div>
+
+</form>
