@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../category.model';
 import { CategoryService } from '../category.service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-category-update',
@@ -14,6 +15,9 @@ export class CategoryUpdateComponent implements OnInit {
     name: "",
     description: "",
   };
+
+  name = new FormControl("", [Validators.minLength(3)]);
+  description = new FormControl("", [Validators.minLength(3)]);
 
   constructor(
     private service: CategoryService,
@@ -38,13 +42,24 @@ export class CategoryUpdateComponent implements OnInit {
       this.router.navigate(["categories"]);
       this.service.message("Category updated successfully!");
     }, err => {
-      for(let i = 0; i < err.error.errors.length; i++) {
-        this.service.message(err.error.errors[i].message)
-      }
+      this.router.navigate(['categories']);
+      this.service.message("Error updating category. Try later!");
     });
   }
 
   cancel(): void {
     this.router.navigate(['categories'])
+  }
+
+  getNameMessage() {
+    return "Name must be between 3 and 50 characters";
+  }
+
+  getDescriptionMessage() {
+      return "Description must be between 3 and 200 characters";
+  }
+
+  isFormInvalid() {
+    return this.name.invalid || this.description.invalid
   }
 }

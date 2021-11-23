@@ -55,19 +55,19 @@ export class BookUpdateComponent implements OnInit {
     })
   }
 
-  getMessage() {
-    if (this.title.invalid) {
-      return "Title must have be between 3 and 50 characters";
-    }
+  getTitleMessage() {
+    return "Title must be between 3 and 100 characters";
+  }
 
-    if (this.author.invalid) {
-      return "Author name must have be between 3 and 50 characters";
-    }
+  getAuthorMessage() {
+      return "Author name must be between 3 and 100 characters";
+  }
 
-    if (this.description.invalid) {
-      return "Description must have be between 10 and 1.000 characters";
-    }
+  getDescriptionMessage() {
+      return "Description must be between 10 and 2.000.000 characters";
+  }
 
-    return false;
+  isFormInvalid() {
+    return this.title.invalid || this.author.invalid || this.description.invalid
   }
 }

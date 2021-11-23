@@ -3,15 +3,17 @@
 
     <mat-form-field class="form">
         <mat-label>Name</mat-label>
-        <input matInput [(ngModel)]="category.name" type="text" name="name" placeholder="E.g. Computers & Technology">
+        <input matInput [(ngModel)]="category.name" [formControl]="name" required type="text" name="name" placeholder="E.g. Computers & Technology" maxlength="50">
+        <mat-error *ngIf="name.invalid">{{ getNameMessage() }}</mat-error>
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Description</mat-label>
-        <textarea matInput [(ngModel)]="category.description" type="text" name="description" placeholder="E.g. Programming language and infrastructure books."></textarea>
+        <textarea matInput [(ngModel)]="category.description" [formControl]="description" required type="text" name="description" placeholder="E.g. Programming language and infrastructure books." maxlength="200"></textarea>
+        <mat-error *ngIf="description.invalid">{{ getDescriptionMessage() }}</mat-error>
     </mat-form-field>
 
     <div class="buttons">
-        <button (click)="create()" class="mat-elevation-z8" mat-raised-button color="primary"> Save </button>
+        <button (click)="create()" [disabled]="isFormInvalid()" class="mat-elevation-z8" mat-raised-button color="primary"> Save </button>
         <button (click)="cancel()" class="mat-elevation-z8" mat-stroked-button color="primary"> Cancel </button>
     </div>
 
